@@ -62,3 +62,8 @@ class TokenData(BaseModel):
 class Vote(BaseModel):
     post_id: int
     dir: Annotated[int, Field(strict=True, ge=0, le=1)]
+
+
+class User(BaseModel):
+    id: int
+    email: EmailStr

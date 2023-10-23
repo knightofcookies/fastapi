@@ -25,3 +25,8 @@ def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session =
     access_token = oauth2.create_access_token(data={"user_id": user.id})
 
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.get("/login", status_code=status.HTTP_202_ACCEPTED, response_model=schemas.User)
+def check_login(current_user: models.User = Depends(oauth2.get_current_user)):
+    return current_user
